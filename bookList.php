@@ -153,6 +153,8 @@ if(isset($_GET['genre']) && !empty($_GET['genre'])){
                         <h3><?php echo $book['Title']; ?></h3>
                         <p><?php echo $book['Summary']; ?></p>
                         <p>Price: $<?php echo $book['Price']; ?></p>
+                        <p>Authors: <?php echo $book['Authors']; ?></p>
+                        <p>Genres: <?php echo $book['Genres']; ?></p>
                     </div>
                 </div>
             </a>
