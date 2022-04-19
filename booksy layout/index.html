@@ -2,16 +2,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Untitled Document</title>
+<title>BOOKSY</title>
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="stylebody.css">
+	
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet"  href="slidestyle.css">
 </head>
 <body>
 
 
 <div class="search">
 	<div class="logo"><img src="Booksy-logo.png"></div>
-	<input type="search" id="site-search" name="q"><button>Search</button>
+	<!--<input type="search" id="site-search" name="q"><button>Search</button> -->
+	<form class="form-inline md-form mr-auto mb-4">
+  <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+  <button class="btn aqua-gradient btn-rounded btn-sm my-0" type="submit">Search</button>
+</form>
 </div>
 	
 <div id="wrap">
@@ -25,65 +32,119 @@
 </div>
 </div>
 	
-<div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-		<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-		<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	
+<main>
+	<div class="header"> <img src="../images/header.png"></div>
+<span><p>Best Sellers</p></span>
+
+<div class="books">
+<div class="row">
+  <div class="column">
+	 <div class="container">
+    <img src="../images/MISTRESS OF ROME.png" alt="mistress" style="width:90%">
+		 <div class="text-block"><p>$16.50</p></div> </div>
+	</div>
+	  
+  <div class="column">
+	  <div class="container">
+    <img src="../Images/katequeen.png" alt="katequeen" style="width:90%">
+	  	 <div class="text-block"><p>$13.50</p> </div>
+	  </div>
+	  </div>
+	  
+  <div class="column">
+	  <div class="container">
+    <img src="../Images/THE SERPENT AND THE PEARL.png" alt="Serpent and Pearl" style="width:90%">
+	  	 <div class="text-block"><p>$14.50</p></div>
+  </div>
+	  </div>
+
+</div> 
 </div>
+<span><p>Popular Books in Canada</p></span>
+	
+<div id="content-wrapper">
+		<div class="column">
+			<div id="slide-wrapper" >
+				<img id="slideLeft" class="arrow" src="images/arrow-left.png">
+				 <div id="slider">
+					<img class="thumbnail active" src="../images/LESSONS IN CHEMISTRY.png">
+					<img class="thumbnail" src="../images/WHO BY FIRE.png">
+					<img class="thumbnail" src="../images/BE A TRIANGLE.png">
+					<img class="thumbnail" src="../images/RUN TOWARDS THE DANGER.png">
+					<img class="thumbnail" src="../images/TEN STEPS TO NANETTE.png">
+					<img class="thumbnail" src="../images/palace.jpeg">
+					<img class="thumbnail" src="../images/22 murders.jpeg">
+					<img class="thumbnail" src="../images/it ends.jpeg">
+					<img class="thumbnail" src="../images/DREAM.WEBP">
+					<img class="thumbnail" src="../images/FREEZING.JPEG">
+					<img class="thumbnail" src="../images/HELLO.JPEG">
+					<img class="thumbnail" src="../images/IMAGINE.WEBP">
+					
+				</div>
+
+				<img id="slideRight" class="arrow" src="images/arrow-right.png">
+			</div>
+		</div>
+
+	</div>
+
+		<script type="text/javascript" src="script.js"></script>
+	
+
+	
+</main>
 <footer class="footer-distributed">
-  <div class="footer-left">
+
+      <div class="footer-left">
+
 		<img src="Booksy-logos_white.png">
         <p class="footer-links">
           <a href="#" class="link-1">Home</a>
+          
           <a href="#">COLLECTION</a>
-          <a href="#">STORE</a>        
-          <a href="#">BOOK DETAIL</a>             
+        
+          <a href="#">STORE</a>
+        
+          <a href="#">BOOK DETAIL</a>
+             
         </p>
-  </div>
-  <div class="footer-center">
-    <div>
-      <i class="fa fa-map-marker"></i>
-      <p><span>108 University Ave. East. </span> WATERLOO, ON N2J 2W2 </p>
-    </div>
-    <div>
-      <i class="fa fa-phone"></i>
-      <p>+1.555.555.5555</p>
-    </div>
-    <div>
-      <i class="fa fa-envelope"></i>
-      <p><a href="booksy@company.com">booksy@company.com</a></p>
-    </div>
-  </div>
-  <div class="footer-right">
-    <p class="footer-company-contact">
-      <span>Contact Info</span>
-      Asheshkalanigha1242@conestogac.on.ca
-      <br>Mroknsharifi9708@conestogac.on.ca
-      <br>Horen3591@conestogac.on.ca
-    </p>
-  </div>
-</footer>
+      </div>
+
+      <div class="footer-center">
+
+        <div>
+          <i class="fa fa-map-marker"></i>
+          <p><span>108 University Ave. East. </span> WATERLOO, ON N2J 2W2 </p>
+        </div>
+
+        <div>
+          <i class="fa fa-phone"></i>
+          <p>+1.555.555.5555</p>
+        </div>
+
+        <div>
+          <i class="fa fa-envelope"></i>
+          <p><a href="booksy@company.com">booksy@company.com</a></p>
+        </div>
+
+      </div>
+
+      <div class="footer-right">
+
+        <p class="footer-company-contact">
+          <span>Contact Info</span>
+			Asheshkalanigha1242@conestogac.on.ca
+			<br>Mroknsharifi9708@conestogac.on.ca
+			<br>Horen3591@conestogac.on.ca
+			
+          
+        </p>
+
+     
+
+      </div>
+
+    </footer>
+
 </body>
 </html>

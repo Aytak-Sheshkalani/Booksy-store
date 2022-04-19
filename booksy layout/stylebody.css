@@ -42,18 +42,83 @@ padding:0 30px; /* variable width */
 }
 
 
-
-
 label {
    
-    font: 1rem 'Fira Sans', sans-serif;
-	
+font: 1rem 'Fira Sans', sans-serif;
 }
 
 input,
 label {
 	
-    margin: 2rem 0;
-	margin-left: 1100px;
+ margin: 2rem 0;
+ margin-left: 1100px;
 }
+.header{
+	text-align: center;
+}
+
+.header img {
+width: 95%;
+padding: 10px 0 10px 0;
+}
+
+span p{
+	font: Times New Roman;
+	font-weight: bold;
+	font-style: italic;
+	padding-left: 30px;
+	padding-top: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.books{
+	padding-left:  30px;
+}
+.row{
+	display: flex;
+
+}
+.column {
+  flex: 30%;
+  padding:50px ;
+
+}
+.container {
+  position: relative;
+  font-family: Arial;
+}
+
+.text-block {
+  position: absolute;
+  align-items: center;
+  bottom: 10px;
+  right: 190px;
+  background-color:#E2E3E7;
+  opacity: 70%;
+  color: black;
+  padding: 0px 40px;
+ 
+}
+.form-inline.md-form.mr-auto.mb-4{
+	margin-top: 20px;
+	float:right;
+}
+
+@media screen and (max-width: 500px) {
+  .column {
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+
 
