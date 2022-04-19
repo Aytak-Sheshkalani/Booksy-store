@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Untitled Document</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/stylebody.css" />
+    <?php
+        if(isset($cssFiles)) echo $cssFiles;
+    ?>
+  </head>
+  <body>
+    <div class="search">
+      <div class="logo"><img src="assets/images/Booksy-logo.png" /></div>
+      <div>
+          <input type="search" id="site-search" name="q" /><button>Search</button>
+      </div>
+    </div>
+
+    <div id="wrap">
+      <div id="nav">
+        <ul>
+          <li><a href="#">HOME</a></li>
+          <li><a href="#">COLLECTION</a></li>
+          <li><a href="#">STORE</a></li>
+          <li><a href="#">BOOK DETAIL</a></li>
+        </ul>
+      </div>
+    </div>
