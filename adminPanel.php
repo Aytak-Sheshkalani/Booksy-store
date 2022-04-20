@@ -74,27 +74,33 @@ $price=isset($_SESSION['price'])?$_SESSION['price']:'';
         <form class="mui-form" method="post" action="handle_book.php?action=add" enctype="multipart/form-data">
             <legend>Add a book</legend>
             <div class="mui-textfield mui-textfield--float-label">
-                <input type="text" name="Title" maxlength="300" value="<?php  echo str_replace('"', '&quot;', $title); ?>" required>
+                <input type="text" name="Title" maxlength="300"
+                    value="<?php  echo str_replace('"', '&quot;', $title); ?>" required>
                 <label>Title</label>
             </div>
-            <div class="mui-textfield mui-textfield--float-label" > 
-                <input type="text" name="ISBN" pattern="\d{13}" value="<?php  echo str_replace('"', '&quot;', $isbn); ?>" required>
+            <div class="mui-textfield mui-textfield--float-label">
+                <input type="text" name="ISBN" pattern="\d{13}"
+                    value="<?php  echo str_replace('"', '&quot;', $isbn); ?>" required>
                 <label>ISBN</label>
             </div>
             <div class="mui-textfield mui-textfield--float-label">
-                <input type="text" name="Edition" pattern="\d{1,11}" value="<?php  echo str_replace('"', '&quot;', $edition); ?>">
+                <input type="text" name="Edition" pattern="\d{1,11}"
+                    value="<?php  echo str_replace('"', '&quot;', $edition); ?>">
                 <label>Edition</label>
             </div>
-            <div class="mui-textfield mui-textfield--float-label" >
-                <input type="text" name="Year" pattern="\d{4}" value="<?php  echo str_replace('"', '&quot;', $year); ?>">
+            <div class="mui-textfield mui-textfield--float-label">
+                <input type="text" name="Year" pattern="\d{4}"
+                    value="<?php  echo str_replace('"', '&quot;', $year); ?>">
                 <label>Published Year</label>
             </div>
             <div class="mui-textfield mui-textfield--float-label">
-                <input type="text" name="Quantity" pattern="\d{1,11}" value="<?php  echo str_replace('"', '&quot;', $quantity); ?>" required>
+                <input type="text" name="Quantity" pattern="\d{1,11}"
+                    value="<?php  echo str_replace('"', '&quot;', $quantity); ?>" required>
                 <label>Quantity</label>
             </div>
-            <div class="mui-textfield mui-textfield--float-label" >
-                <input type="text" name="Price" pattern="\d{1,11}" value="<?php  echo str_replace('"', '&quot;', $price); ?>" required>
+            <div class="mui-textfield mui-textfield--float-label">
+                <input type="text" name="Price" pattern="\d{1,11}"
+                    value="<?php  echo str_replace('"', '&quot;', $price); ?>" required>
                 <label>Price</label>
             </div>
             <div>
@@ -191,7 +197,15 @@ $price=isset($_SESSION['price'])?$_SESSION['price']:'';
         <button type="submit" class="mui-btn mui-btn--raised">Add Author</button>
     </form>
 </div>
-<div class="add_genre">
+<div class="add_genre" id="genreform">
+    <?php
+    if(isset($_SESSION['genre_message'])){
+        echo '<div class="mui-panel">';
+        echo '<p>'.$_SESSION['genre_message'].'</p>';
+        echo '</div>';
+        unset($_SESSION['genre_message']);
+    }
+    ?>
     <form class="mui-form" method="post" action="handle_genre.php?action=add">
         <legend>Add a genre</legend>
         <div class="mui-textfield mui-textfield--float-label">
@@ -202,7 +216,6 @@ $price=isset($_SESSION['price'])?$_SESSION['price']:'';
             <textarea name="Description"></textarea>
             <label>Description</label>
         </div>
-        <input type="file" class="custom-file-input" name="genre_image" accept="image/*" />
 
         <button type="submit" class="mui-btn mui-btn--raised">Add Genre</button>
 </div>
