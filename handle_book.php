@@ -77,8 +77,8 @@ if($action=='delete'){
                     exit();
                 }
                 $_SESSION['message'] = 'Book added successfully';
-                // header('Location: adminPanel.php');
-                // exit();
+                header('Location: adminPanel.php');
+                exit();
             } else {
                 $_SESSION['message'] = "Sorry, there was an error uploading your file.";
                 header('Location: adminPanel.php');

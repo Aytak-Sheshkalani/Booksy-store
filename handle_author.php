@@ -1,73 +1,47 @@
 <?php
+require_once('includes/getUUid.php');
 require_once('includes/checkAdmin.php');    
 require_once('includes/Database.php');
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 $dbc = new DbConnect();
 
-if($action=='delete'){
-    $bookID = $_GET['bookID'];
-    $query = "DELETE FROM Book WHERE BookID = '$bookID'";
-    $dbc->query($query);
-    header('Location: adminPanel.php');
-    exit();
-}elseif($action=='edit'){
-    $query = "SELECT * FROM Book WHERE BookID = '$bookID'";
-    $result = $dbc->query($query);
-    $book = $result->fetch_assoc();
-    $query = "SELECT * FROM Book_author WHERE BookISBN = '$bookID'";
-    $result = $dbc->query($query);
-    $authors = [];
-    while($row = $result->fetch_assoc()){
-        $authors[] = $row['AuthorID'];
+if($action=='add'){
+    $authorId =  guidv4();
+    $imageName = null;
+    if($_FILES['author_image'] && $_FILES['author_image']['error']==0){
+
+        $imageFileType = strtolower(pathinfo($_FILES["author_image"]["name"],PATHINFO_EXTENSION));
+        $name = $imageName = $authorId.'.'.$imageFileType;
+        $target_dir = "assets/images/authors/";
+        $target_file = $target_dir . $name;
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" ) {
+            $_SESSION['auth_message'] = 'Error: '.$dbc->get_dbc()->error;
+        }else if (!move_uploaded_file($_FILES["author_image"]["tmp_name"], $target_file)) {
+                $_SESSION['auth_message'] = "Sorry, there was an error uploading your file.";
+                header('Location: adminPanel.php#authorform');
+                exit();
+        }
     }
-    $query = "SELECT * FROM Book_genre WHERE BookISBN = '$bookID'";
-    $result = $dbc->query($query);
-    $genres = [];
-    while($row = $result->fetch_assoc()){
-        $genres[] = $row['GenreID'];
+    $author = $_POST['Name'];
+    $birthday = $_POST['Birthday'];
+    $description = strlen($_POST['Description'])!==0? "'{$dbc->prepare_string($_POST['Description'])}'," : '';
+    $query = "INSERT INTO Author (`AuthorID`, `Name`, `Birthday`, `Author_image`, `Description`) VALUES (?,?,?,?,?)";
+    $params = [
+        ["value"=>$authorId, "type"=> 's'],
+        ["value"=>$author, "type"=> 's'],
+        ["value"=>$birthday, "type"=> 's'],
+        ["value"=> null , "type"=> 's'],
+        ["value"=>$imageName, "type"=> 's'],
+    ];
+    $res = $dbc->query($query, $params,false);
+    if($res->error){
+        $_SESSION['auth_message'] = 'Error: '.$res->error;
+        header('Location: adminPanel.php#authorform');
+        exit();
     }
-}elseif($action=='update'){
-    $bookID = $_GET['bookID'];
-    $title = $_GET['title'];
-    $summary = $_GET['summary'];
-    $year = $_GET['year'];
-    $isbn = $_GET['isbn'];
-    $authors = $_GET['authors'];
-    $genres = $_GET['genres'];
-    $query = "UPDATE Book SET Title = '$title', Summary = '$summary', Year = '$year', ISBN = '$isbn' WHERE BookID = '$bookID'";
-    $dbc->query($query);
-    $query = "DELETE FROM Book_author WHERE BookISBN = '$bookID'";
-    $dbc->query($query);
-    $query = "DELETE FROM Book_genre WHERE BookISBN = '$bookID'";
-    $dbc->query($query);
-    foreach($authors as $author){
-        $query = "INSERT INTO Book_author (BookISBN, AuthorID) VALUES ('$bookID', '$author')";
-        $dbc->query($query);
-    }
-    foreach($genres as $genre){
-        $query = "INSERT INTO Book_genre (BookISBN, GenreID) VALUES ('$bookID', '$genre')";
-        $dbc->query($query);
-    }
-    header('Location: adminPanel.php');
-    exit();
-}elseif($action=='add'){
-    $title = $_GET['title'];
-    $summary = $_GET['summary'];
-    $year = $_GET['year'];
-    $isbn = $_GET['isbn'];
-    $authors = $_GET['authors'];
-    $genres = $_GET['genres'];
-    $query = "INSERT INTO Book (Title, Summary, Year, ISBN) VALUES ('$title', '$summary', '$year', '$isbn')";
-    $dbc->query($query);
-    $bookID = $dbc->get_dbc()->insert_id;
-    foreach($authors as $author){
-        $query = "INSERT INTO Book_author (BookISBN, AuthorID) VALUES ('$bookID', '$author')";
-        $dbc->query($query);
-    }
-    foreach($genres as $genre){
-        $query = "INSERT INTO Book_genre (BookISBN, GenreID) VALUES ('$bookID', '$genre')";
-        $dbc->query($query);
-    }
-    header('Location: adminPanel.php');
+    $_SESSION['auth_message'] = 'Successfully added new Author!';
+
+    header('Location: adminPanel.php#authorform');
     exit();
 }

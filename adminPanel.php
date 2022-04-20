@@ -1,6 +1,5 @@
 <?php
 // Aytak Sheshkalani Ghalibaf 8741242
-
 require_once('includes/checkAdmin.php');    
 function getBookAuthors($authorList, $authorIDs){
     $authors = [];
@@ -30,6 +29,15 @@ $cssFiles = '
 ';
 $jsFiles = '
 <script src="//cdn.muicss.com/mui-0.10.3/js/mui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.0/jquery.min.js" integrity="sha512-K7Zj7PGsHk2fpY3Jwvbuo9nKc541MofFrrLaUUO9zqghnJxbZ3Zn35W/ZeXvbT2RtSujxGbw8PgkqpoZXXbGhw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+$(function(){
+    // get hash value
+    var hash = window.location.hash;
+    // now scroll to element with that id
+    $(\'html, body\').animate({ scrollTop: $(hash).offset().top });
+  });
+</script>
 ';
 require_once('includes/header.php');
 require_once('includes/Database.php');
@@ -155,20 +163,24 @@ $price=isset($_SESSION['price'])?$_SESSION['price']:'';
 
 
 </div>
-<div class="add_author">
-    <form class="mui-form" method="post" action="handle_author.php?action=add">
+<div class="add_author" id="authorform">
+    <?php
+    if(isset($_SESSION['auth_message'])){
+        echo '<div class="mui-panel">';
+        echo '<p>'.$_SESSION['auth_message'].'</p>';
+        echo '</div>';
+        unset($_SESSION['auth_message']);
+    }
+    ?>
+    <form class="mui-form" method="post" action="handle_author.php?action=add" enctype="multipart/form-data">
         <legend>Add an author</legend>
         <div class="mui-textfield mui-textfield--float-label">
-            <input type="text" name="Name" maxlength="300">
+            <input type="text" name="Name" maxlength="300" required>
             <label>Name</label>
         </div>
         <div class="mui-textfield mui-textfield--float-label">
-            <input type="text" name="Birthday" pattern="\d{4}">
-            <label>Birth Year</label>
-        </div>
-        <div class="mui-textfield mui-textfield--float-label">
-            <input type="text" name="Deathday" pattern="\d{4}">
-            <label>Death Year</label>
+            <input type="date" name="Birthday" pattern="\d{4}" required>
+            <label>Birthday</label>
         </div>
         <div class="mui-textfield">
             <textarea name="Description"></textarea>
