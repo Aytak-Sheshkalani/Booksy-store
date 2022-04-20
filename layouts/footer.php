@@ -4,7 +4,7 @@
 
         <div class="footer-left">
 
-            <img src="Booksy-logos_white.png">
+            <img src="assets/images/Booksy-logos_white.png">
             <p class="footer-links">
                 <a href="#" class="link-1">Home</a>
 
