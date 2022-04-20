@@ -46,9 +46,6 @@ class DbConnect
                     $params_values[] = $param['value'];
 
             }
-            print_r($param_types);
-            print_r($params_values);
-            print(implode('',$param_types));
             mysqli_stmt_bind_param($stmt, implode('',$param_types), ...$params_values);
         }
         $result = mysqli_stmt_execute($stmt);

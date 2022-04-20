@@ -21,6 +21,7 @@ if($action=='delete'){
     $_SESSION['quantity'] = $_POST['Quantity'];
     $_SESSION['edition'] = $_POST['Edition'];
 
+    print_r($_POST);
 
 
 
@@ -34,6 +35,7 @@ if($action=='delete'){
     $params[] = ["value"=>null, "type"=> 's'];
     $params[] = ["value"=>$_POST['Summary'], "type"=> 's'];
     
+    $bookID = $_POST['ISBN'];
     
     $query = "INSERT INTO Book (`Title`, `ISBN`,`Edition`,`Year`, `Quantity`,`Price`,`Image`,`Summary`) VALUES (?,?,?,?,?,?,?,?)";
     $res = $dbc->query($query, $params,false);
@@ -42,21 +44,30 @@ if($action=='delete'){
         header('Location: adminPanel.php');
         exit();
     }
+    $authors = $_POST['authors'];
+    foreach($authors as $author){
+        $query = "INSERT INTO Book_author (BookISBN, AuthorID) VALUES ('$bookID', '$author')";
+        $dbc->query($query);
+    }
+    $genres = $_POST['genres'];
+    foreach($genres as $genre){
+        $query = "INSERT INTO Book_genre (BookISBN, GenreID) VALUES ('$bookID', '$genre')";
+        $dbc->query($query);
+    }
+
+
     if($_FILES['image'] && $_FILES['image']['error']==0){
-        $bookID = $_POST['ISBN'];
 
         $imageFileType = strtolower(pathinfo($_FILES["image"]["name"],PATHINFO_EXTENSION));
         $name = guidv4().'.'.$imageFileType;
         $target_dir = "assets/images/books/";
         $target_file = $target_dir . $name;
-        print(getcwd());
         if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
         && $imageFileType != "gif" ) {
             $_SESSION['message'] = 'Error: '.$dbc->get_dbc()->error;
         }else{
             if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
                 $query = "UPDATE Book SET Image = '$name' WHERE ISBN = '$bookID'";
-                print($query);
                 $res = $dbc->query($query,[],false);
                 if($res->error){
                     $_SESSION['message'] = 'Error: '.$res->error;
@@ -64,8 +75,8 @@ if($action=='delete'){
                     exit();
                 }
                 $_SESSION['message'] = 'Book added successfully';
-                header('Location: adminPanel.php');
-                exit();
+                // header('Location: adminPanel.php');
+                // exit();
             } else {
                 $_SESSION['message'] = "Sorry, there was an error uploading your file.";
                 header('Location: adminPanel.php');
@@ -77,16 +88,8 @@ if($action=='delete'){
         header('Location: adminPanel.php');
         exit();
     }
-    // foreach($authors as $author){
-    //     $query = "INSERT INTO Book_author (BookISBN, AuthorID) VALUES ('$bookID', '$author')";
-    //     $dbc->query($query);
-    // }
-    // foreach($genres as $genre){
-    //     $query = "INSERT INTO Book_genre (BookISBN, GenreID) VALUES ('$bookID', '$genre')";
-    //     $dbc->query($query);
-    // }
-    // header('Location: adminPanel.php');
-    // exit();
+    header('Location: adminPanel.php');
+    exit();
 }
 // elseif($action=='edit'){
 //     $query = "SELECT * FROM Book WHERE BookID = '$bookID'";
@@ -127,4 +130,3 @@ if($action=='delete'){
 //         $dbc->query($query);
 //     }
 // }
-print_r($_SESSION);

@@ -88,19 +88,19 @@ $price=isset($_SESSION['price'])?$_SESSION['price']:'';
                 <label>Price</label>
             </div>
             <div>
-                <label for="genre">Genre</label>
-                <select name="genres" multiple required>
+                <label for="genres[]">Genre</label>
+                <select name="genres[]" multiple required>
                     <?php
                 foreach($genres as $genre){
-                    echo "<option value='{$genre['id']}'>{$genre['Name']}</option>";
+                    echo "<option value='{$genre['GenreID']}'>{$genre['Name']}</option>";
                 }
                 ?>
 
                 </select>
             </div>
             <div>
-                <label for="author">Author</label>
-                <select name="authors" multiple required>
+                <label for="authors[]">Author</label>
+                <select name="authors[]" multiple required>
                     <?php
                 foreach($authors as $author){
                     echo "<option value='{$author['AuthorID']}'>{$author['Name']}</option>";

@@ -130,7 +130,7 @@ if(isset($_GET['genre']) && !empty($_GET['genre'])){
                 <label>Published before</label>
             </div>
 
-            <button type="submit" class="mui-btn mui-btn--raised">Submit</button>
+            <button type="submit" class="mui-btn mui-btn--raised" style="width:100%">Search</button>
         </form>
     </div>
     <div class="book_list">
