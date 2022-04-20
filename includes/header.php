@@ -30,7 +30,7 @@
                 <li><a href="#">COLLECTION</a></li>
                 <li><a href="#">STORE</a></li>
                 <li><a href="bookList.php">BOOK LIST</a></li>
-                <li><a href="login.php">LOGIN AS ADMIN</a></li>
+                <li><a href="login.php">LOGIN</a></li>
             </ul>
         </div>
     </div>

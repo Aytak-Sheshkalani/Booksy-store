@@ -9,7 +9,7 @@ function isUserAdmin(){
     return false;    
 }
 session_start();
-if(!isUserAdmin() && false){
+if(!isUserAdmin()){
     header('Location: index.php');
     exit();
 }

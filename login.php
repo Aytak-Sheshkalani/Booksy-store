@@ -1,5 +1,11 @@
 <?php
 // Aytak Sheshkalani Ghalibaf 8741242
+// for admin
+// Username:admin@admin.ca
+// Password:123
+// for user
+// Username:user@user.ca
+// Password:123
 session_start();
 $cssFiles = '
 <link rel="stylesheet" href="assets/css/booklist.css" />
@@ -16,18 +22,26 @@ $error ="";
 if(isset($_POST['username']) && isset($_POST['password'])){
     // get user from database  
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $query = "SELECT * FROM User WHERE Email = ? and `Password` = ? and `Type`=1";
+    $query = "SELECT `password`, `Type` FROM User WHERE Email = ? LIMIT 1";
     $params= [
         ["value"=> $_POST['username'],"type"=>"s"],
-        ["value"=> $password,"type"=>"s"]
     ];
     
-    $res = $dbc->query($query,$params,false);
-    if($res->affected_rows > 0){
-        $_SESSION['user'] = ['user'=>$_POST['username'],'role'=>'admin'];
-        header('Location: index.php');
+    $res = $dbc->query($query,$params);
+    $pass = $res[0]['password'];
+    $type = $res[0]['Type'];
+    if(password_verify($_POST['password'], $pass)){
+        if( $type == 1){
+            $_SESSION['user'] = [ 'role' => 'admin', 'username' => $_POST['username'] ];
+            header('Location: adminPanel.php');
+
+        }else{
+            $_SESSION['user'] = [ 'role' => 'user', 'username' => $_POST['username'] ];
+            header('Location: booklist.php');
+        }
+        
     }else{
-        $error = 'Invalid username or password';
+        $error = "Invalid username or password";
     }
 }
 ?>
