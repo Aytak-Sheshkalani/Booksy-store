@@ -23,7 +23,6 @@ if($action=='delete'){
     $_SESSION['quantity'] = $_POST['Quantity'];
     $_SESSION['edition'] = $_POST['Edition'];
 
-    print_r($_POST);
 
 
 

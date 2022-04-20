@@ -2,6 +2,8 @@
     session_start();
     // require_once('./inc/config.php');    
     // require_once('./inc/helpers.php');  
+    require_once('includes/Database.php');
+    $dbc = new DbConnect();
 
     if(isset($_GET['action'],$_GET['item']) && $_GET['action'] == 'remove')
     {
@@ -15,11 +17,29 @@
 	
     include('layouts/header.php');
 
-    //pre($_SESSION);
+    if(isset($_POST['ISBN'])){
+        $booksql= "SELECT * FROM Book WHERE ISBN = '".$_POST['ISBN']."'";
+        $bookresult = $dbc->query($booksql);
+        $book = $bookresult[0];
+        if(isset($_SESSION['cart_items']) && array_key_exists($_POST['ISBN'],$_SESSION['cart_items'])){
+            $_SESSION['cart_items'][$_POST['ISBN']]['qty'] += 1;
+        }else{
+            $_SESSION['cart_items'][$_POST['ISBN']] = [
+                "product_name" => $book['Title'],
+                "product_img" => $book['Image'],
+                "qty" => 1,
+                "product_price" => $book['Price']
+            ];
+        }
+    }
+    if(isset($_GET['action']) && $_GET['action']=='clear'){
+        unset($_SESSION['cart_items']);
+    }
 ?>
 <div class="row">
     <div class="col-md-12">
-        <?php if(empty($_SESSION['cart_items'])){?>
+        <?php if(empty($_SESSION['cart_items'])){
+            ?>
         <table class="table">
             <tr>
                 <td>
@@ -29,8 +49,9 @@
         </table>
         <?php }?>
         <?php if(isset($_SESSION['cart_items']) && count($_SESSION['cart_items']) > 0){?>
+        
         <table class="table">
-           <thead>
+            <thead>
                 <tr>
                     <th>Product</th>
                     <th>Price</th>
@@ -44,34 +65,36 @@
                     $itemCounter = 0;
                     foreach($_SESSION['cart_items'] as $key => $item){
 
-                     $imgUrl = PRODUCT_IMG_URL.str_replace(' ','-',strtolower($item['product_name']))."/".$item['product_img'];   
-                    
+                    $imgUrl = 'assets/images/books/'.((strlen(trim($item['product_img']))!=0) ? trim($item['product_img']) : 'no-image.jpg');
+
                     $total = $item['product_price'] * $item['qty'];
                     $totalCounter+= $total;
                     $itemCounter+=$item['qty'];
                     ?>
-                    <tr>
-                        <td>
-                            <img src="<?php echo $imgUrl; ?>" class="rounded img-thumbnail mr-2" style="width:60px;"><?php echo $item['product_name'];?>
-                            
-                            <a href="cart.php?action=remove&item=<?php echo $key?>" class="text-danger">
-                                <i class="bi bi-trash-fill"></i>
-                            </a>
+                <tr>
+                    <td>
+                        <img src="<?php echo $imgUrl; ?>" class="rounded img-thumbnail mr-2"
+                            style="width:60px;"><?php echo $item['product_name'];?>
 
-                        </td>
-                        <td>
-                            $<?php echo $item['product_price'];?>
-                        </td>
-                        <td>
-                            <input type="number" name="" class="cart-qty-single" data-item-id="<?php echo $key?>" value="<?php echo $item['qty'];?>" min="1" max="1000" >
-                        </td>
-                        <td>
-                            <?php echo $total;?>
-                        </td>
-                    </tr>
+                        <a href="cart.php?action=remove&item=<?php echo $key?>" class="text-danger">
+                            <i class="bi bi-trash-fill"></i>
+                        </a>
+
+                    </td>
+                    <td>
+                        $<?php echo $item['product_price'];?>
+                    </td>
+                    <td>
+                        <input type="number" name="" class="cart-qty-single" data-item-id="<?php echo $key?>"
+                            value="<?php echo $item['qty'];?>" min="1" max="1000">
+                    </td>
+                    <td>
+                        <?php echo $total;?>
+                    </td>
+                </tr>
                 <?php }?>
                 <tr class="border-top border-bottom">
-                    <td><button class="btn btn-danger btn-sm" id="emptyCart">Clear Cart</button></td>
+                    <td><a href="cart.php?action=clear"><button class="btn btn-danger btn-sm" id="emptyCart">Clear Cart</button></a></td>
                     <td></td>
                     <td>
                         <strong>
@@ -80,20 +103,20 @@
                         </strong>
                     </td>
                     <td><strong>$<?php echo $totalCounter;?></strong></td>
-                </tr> 
                 </tr>
-            </tbody> 
+                </tr>
+            </tbody>
         </table>
         <div class="row">
             <div class="col-md-11">
-				<a href="checkout.php">
-					<button class="btn btn-primary btn-lg float-right">Checkout</button>
-				</a>
+                <a href="checkout.php">
+                    <button class="btn btn-primary btn-lg float-right">Checkout</button>
+                </a>
             </div>
         </div>
         <br>
         <br>
-        
+
         <?php }?>
     </div>
 </div>

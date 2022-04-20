@@ -1,4 +1,12 @@
 <?php
+require_once('includes/Database.php');
+$dbc = new DbConnect();
+// get book by isbn from mysql
+$query = "SELECT * FROM Book ORDER BY RAND()  Limit 20";
+$books = $dbc->query($query);
+
+
+
 $cssFiles = '
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <link rel="stylesheet"  href="assets/css/slidestyle.css" />';
@@ -33,25 +41,23 @@ require_once('includes/header.php');
 
 </div> 
 </div>
-<span><p>Popular Books in Canada</p></span>
+<span><p>Random Books in Our Store</p></span>
 	
 <div id="content-wrapper">
 		<div class="column">
 			<div id="slide-wrapper" >
 				<img id="slideLeft" class="arrow" src="assets/images/arrow-left.png">
 				 <div id="slider">
-					<div><img class="thumbnail active" src="./images/LESSONS IN CHEMISTRY.png"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
-					<div><img class="thumbnail" src="./images/WHO BY FIRE.png"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
-					<div><img class="thumbnail" src="./images/BE A TRIANGLE.png"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
-					<div><img class="thumbnail" src="./images/RUN TOWARDS THE DANGER.png"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
-					<div><img class="thumbnail" src="./images/TEN STEPS TO NANETTE.png"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
-					<div><img class="thumbnail" src="./images/palace.jpeg"><button id="button-service" onclick="window.location.href='book.php'l'">Add to Cart</button></div>
-					<div><img class="thumbnail" src="./images/22 murders.jpeg"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
-					<div><img class="thumbnail" src="./images/it ends.jpeg"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
-					<div><img class="thumbnail" src="./images/DREAM.WEBP"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
-					<div><img class="thumbnail" src="./images/FREEZING.JPEG"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
-					<div><img class="thumbnail" src="./images/HELLO.JPEG"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
-					<div><img class="thumbnail" src="./images/IMAGINE.WEBP"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
+					 <?php
+					 foreach($books as $book){
+					 ?>
+					<div>
+                    <img  class="thumbnail active" src='assets/images/books/<?php echo (strlen(trim($book['Image']))!=0) ? trim($book['Image']) : 'no-image.jpg'; ?>' />
+					<button id="button-service" onclick="window.location.href='book.php?isbn=<?php echo $book['ISBN']; ?>'">Add to Cart</button>
+				</div>
+					<?php
+					 }
+					 ?>
 					
 				</div>
 

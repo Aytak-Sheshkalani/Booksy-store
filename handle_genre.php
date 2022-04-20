@@ -15,7 +15,6 @@ if($action="add"){
         $params[] = ["value"=> $genreId, "type"=> 's'];
         $params[] = ["value"=>$_POST['Name'], "type"=> 's'];
         $params[] = ["value"=>$_POST['Description'], "type"=> 's'];
-        print_r($params);
         $res = $dbc->query($query, $params,false);
         if($res->error){
             $_SESSION['genre_message'] = 'Error: '.$res->error;

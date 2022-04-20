@@ -141,8 +141,12 @@ if(isset($_GET['genre']) && !empty($_GET['genre'])){
             <?php
             $q= getSearchQuery();
             $books = $dbc->query($q);
-            foreach($books as $book){ ?>
-            <a href='bookDetail.php?id=<?php echo $book['ISBN']; ?>'>
+            foreach($books as $book){ 
+                // if(strlen($book['ISBN'])==0){
+                //     continue;
+                // }
+                ?>
+            <a href='book.php?isbn=<?php echo $book['ISBN']; ?>'>
                 <div class='book'>
                     <div class="availability">
                         <?php echo defineText($book['Quantity']);?>
