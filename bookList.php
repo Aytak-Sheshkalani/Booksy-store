@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 $cssFiles = '
 <link rel="stylesheet" href="assets/css/booklist.css" />
 <link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css" />
@@ -148,7 +145,10 @@ if(isset($_GET['genre']) && !empty($_GET['genre'])){
                     <div class="availability">
                         <?php echo defineText($book['Quantity']);?>
                     </div>
-                    <img src='assets/images/books/<?php echo $book['Image'];?>' />
+                    <?php
+                    echo strlen(trim($book['Image']))===0;
+                    ?>
+                    <img src='assets/images/books/<?php echo (strlen(trim($book['Image']))!=0) ? trim($book['Image']) : 'no-image.jpg'; ?>' />
                     <div class='description'>
                         <h3><?php echo $book['Title']; ?></h3>
                         <p><?php echo $book['Summary']; ?></p>

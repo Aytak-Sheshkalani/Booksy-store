@@ -30,24 +30,41 @@ class DbConnect
         return $string;
     }
 
-    public function query($query, $params=[]){
+    public function query($query, $params=[],$isSelect=true){
         $stmt = mysqli_stmt_init($this->dbc);
         mysqli_stmt_prepare($stmt, $query);
         if(count($params)){
-            $param_types = implode('',array_keys($params));
-            $params_values = array_values($params);
-            mysqli_stmt_bind_param($stmt, $param_types, ...$params_values);
+            $param_types = [];
+            $params_values = [];
+            foreach($params as $param){
+                $param_types[] = $param['type'];
+                if($param['type']=='s')
+                    $params_values[] = $this->prepare_string($param['value']);
+                elseif($param['type']=='i')
+                    $params_values[] = (int)$param['value'];
+                else
+                    $params_values[] = $param['value'];
+
+            }
+            print_r($param_types);
+            print_r($params_values);
+            print(implode('',$param_types));
+            mysqli_stmt_bind_param($stmt, implode('',$param_types), ...$params_values);
         }
         $result = mysqli_stmt_execute($stmt);
         $res = $stmt->get_result();
-        if(!$res){
-            return false;
+        if($isSelect){
+            if(!$res){
+                return false;
+            }
+            $output = [];
+            while($row = $res->fetch_assoc()){
+                $output[] = $row;
+            }
+            return $output;
+        }else{
+            return $stmt;
         }
-        $output = [];
-        while($row = $res->fetch_assoc()){
-            $output[] = $row;
-        }
-        return $output;
     }
     
     public function get_dbc()

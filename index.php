@@ -1,59 +1,29 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>BOOKSY</title>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="stylebody.css">
-	
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<link rel="stylesheet"  href="slidestyle.css">
-</head>
-<body>
-
-
-<div class="search">
-	<div class="logo"><img src="Booksy-logo.png"></div>
-	<!--<input type="search" id="site-search" name="q"><button>Search</button> -->
-	<form class="form-inline md-form mr-auto mb-4">
-  <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-  <button class="btn aqua-gradient btn-rounded btn-sm my-0" type="submit">Search</button>
-</form>
-</div>
-	
-<div id="wrap">
-<div id="nav">
-<ul>
-  <li><a href="#">HOME</a></li>
-  <li><a href="#">COLLECTION</a></li>
-  <li><a href="#">STORE</a></li>
-  <li><a href="#">BOOK DETAIL</a></li>
-</ul>
-</div>
-</div>
+<?php
+require_once('includes/header.php');
+?>
 	
 <main>
-	<div class="header"> <img src="../images/header.png"></div>
+	<div class="header"> <img src="assets/images/header.png"></div>
 <span><p>Best Sellers</p></span>
 
 <div class="books">
 <div class="row">
   <div class="column">
 	 <div class="container">
-    <img src="../images/MISTRESS OF ROME.png" alt="mistress" style="width:90%">
+    <img src="assets/images/MISTRESS OF ROME.png" alt="mistress" style="width:90%">
 		 <div class="text-block"><p>$16.50</p></div> </div>
 	</div>
 	  
   <div class="column">
 	  <div class="container">
-    <img src="../Images/katequeen.png" alt="katequeen" style="width:90%">
+    <img src="assets/images/katequeen.png" alt="katequeen" style="width:90%">
 	  	 <div class="text-block"><p>$13.50</p> </div>
 	  </div>
 	  </div>
 	  
   <div class="column">
 	  <div class="container">
-    <img src="../Images/THE SERPENT AND THE PEARL.png" alt="Serpent and Pearl" style="width:90%">
+    <img src="assets/images/THE SERPENT AND THE PEARL.png" alt="Serpent and Pearl" style="width:90%">
 	  	 <div class="text-block"><p>$14.50</p></div>
   </div>
 	  </div>
@@ -67,28 +37,28 @@
 			<div id="slide-wrapper" >
 				<img id="slideLeft" class="arrow" src="images/arrow-left.png">
 				 <div id="slider">
-					<img class="thumbnail active" src="../images/LESSONS IN CHEMISTRY.png">
-					<img class="thumbnail" src="../images/WHO BY FIRE.png">
-					<img class="thumbnail" src="../images/BE A TRIANGLE.png">
-					<img class="thumbnail" src="../images/RUN TOWARDS THE DANGER.png">
-					<img class="thumbnail" src="../images/TEN STEPS TO NANETTE.png">
-					<img class="thumbnail" src="../images/palace.jpeg">
-					<img class="thumbnail" src="../images/22 murders.jpeg">
-					<img class="thumbnail" src="../images/it ends.jpeg">
-					<img class="thumbnail" src="../images/DREAM.WEBP">
-					<img class="thumbnail" src="../images/FREEZING.JPEG">
-					<img class="thumbnail" src="../images/HELLO.JPEG">
-					<img class="thumbnail" src="../images/IMAGINE.WEBP">
+					<img class="thumbnail active" src="assets/images/LESSONS IN CHEMISTRY.png">
+					<img class="thumbnail" src="assets/images/WHO BY FIRE.png">
+					<img class="thumbnail" src="assets/images/BE A TRIANGLE.png">
+					<img class="thumbnail" src="assets/images/RUN TOWARDS THE DANGER.png">
+					<img class="thumbnail" src="assets/images/TEN STEPS TO NANETTE.png">
+					<img class="thumbnail" src="assets/images/palace.jpeg">
+					<img class="thumbnail" src="assets/images/22 murders.jpeg">
+					<img class="thumbnail" src="assets/images/it ends.jpeg">
+					<img class="thumbnail" src="assets/images/DREAM.WEBP">
+					<img class="thumbnail" src="assets/images/FREEZING.JPEG">
+					<img class="thumbnail" src="assets/images/HELLO.JPEG">
+					<img class="thumbnail" src="assets/images/IMAGINE.WEBP">
 					
 				</div>
 
-				<img id="slideRight" class="arrow" src="images/arrow-right.png">
+				<img id="slideRight" class="arrow" src="assets/images/arrow-right.png">
 			</div>
 		</div>
 
 	</div>
 
-		<script type="text/javascript" src="script.js"></script>
+		<script type="text/javascript" src="assets/js/script.js"></script>
 	
 
 	
@@ -146,6 +116,6 @@
 
     </footer>
 
-
-</body>
-</html>
+<?php
+require_once('includes/footer.php');
+?>

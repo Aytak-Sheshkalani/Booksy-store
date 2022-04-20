@@ -25,18 +25,22 @@
   padding: 10px;
   position: relative;
 }
+.book{
+  height:100%;
+}
 .book img {
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 .book .description {
+  width: 100%;
   position: absolute;
   bottom: 0px;
   opacity: 0;
-  color: #fff;
+  color: #000;
   padding: 20px;
   text-align: center;
-  background: #ffffff57;
+  background: #ffffffb6;
   transition: all 0.3s ease-in-out;
   text-align: left;
 }
