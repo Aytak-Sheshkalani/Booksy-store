@@ -30,7 +30,7 @@ function getSearchQuery(){
     }
 
 
-    $query = "SELECT * FROM Book ";
+    $query = "SELECT Book_author.*,Book_genre.*, Book.ISBN,Title,`Edition`, `Year`, Summary,Price,`Image`,Quantity  FROM Book ";
     if($authorCond){
         $query .= "inner join (Select ISBN, GROUP_CONCAT(Author.Name) as Authors from Author, Book_author,Book where Book_author.AuthorID = Author.AuthorID and Book.ISBN = Book_author.BookISBN $authorCond GROUP BY Book.ISBN) as Book_author on Book.ISBN = Book_Author.ISBN ";
     }else{
@@ -142,18 +142,12 @@ if(isset($_GET['genre']) && !empty($_GET['genre'])){
             $q= getSearchQuery();
             $books = $dbc->query($q);
             foreach($books as $book){ 
-                // if(strlen($book['ISBN'])==0){
-                //     continue;
-                // }
                 ?>
             <a href='book.php?isbn=<?php echo $book['ISBN']; ?>'>
                 <div class='book'>
                     <div class="availability">
                         <?php echo defineText($book['Quantity']);?>
                     </div>
-                    <?php
-                    echo strlen(trim($book['Image']))===0;
-                    ?>
                     <img src='assets/images/books/<?php echo (strlen(trim($book['Image']))!=0) ? trim($book['Image']) : 'no-image.jpg'; ?>' />
                     <div class='description'>
                         <h3><?php echo $book['Title']; ?></h3>

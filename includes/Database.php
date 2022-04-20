@@ -56,10 +56,7 @@ class DbConnect
             if(!$res){
                 return false;
             }
-            $output = [];
-            while($row = $res->fetch_assoc()){
-                $output[] = $row;
-            }
+            $output = $res->fetch_all(MYSQLI_ASSOC);
             return $output;
         }else{
             return $stmt;
