@@ -43,15 +43,15 @@ require_once('includes/header.php');
 					<div><img class="thumbnail active" src="./images/LESSONS IN CHEMISTRY.png"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
 					<div><img class="thumbnail" src="./images/WHO BY FIRE.png"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
 					<div><img class="thumbnail" src="./images/BE A TRIANGLE.png"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
-					<div><img class="thumbnail" src="./images/RUN TOWARDS THE DANGER.png"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
-					<div><img class="thumbnail" src="./images/TEN STEPS TO NANETTE.png"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
-					<div><img class="thumbnail" src="./images/palace.jpeg"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
-					<div><img class="thumbnail" src="./images/22 murders.jpeg"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
-					<div><img class="thumbnail" src="./images/it ends.jpeg"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
-					<div><img class="thumbnail" src="./images/DREAM.WEBP"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
-					<div><img class="thumbnail" src="./images/FREEZING.JPEG"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
-					<div><img class="thumbnail" src="./images/HELLO.JPEG"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
-					<div><img class="thumbnail" src="./images/IMAGINE.WEBP"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
+					<div><img class="thumbnail" src="./images/RUN TOWARDS THE DANGER.png"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
+					<div><img class="thumbnail" src="./images/TEN STEPS TO NANETTE.png"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
+					<div><img class="thumbnail" src="./images/palace.jpeg"><button id="button-service" onclick="window.location.href='book.php'l'">Add to Cart</button></div>
+					<div><img class="thumbnail" src="./images/22 murders.jpeg"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
+					<div><img class="thumbnail" src="./images/it ends.jpeg"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
+					<div><img class="thumbnail" src="./images/DREAM.WEBP"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
+					<div><img class="thumbnail" src="./images/FREEZING.JPEG"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
+					<div><img class="thumbnail" src="./images/HELLO.JPEG"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
+					<div><img class="thumbnail" src="./images/IMAGINE.WEBP"><button id="button-service" onclick="window.location.href='book.php'">Add to Cart</button></div>
 					
 				</div>
 
