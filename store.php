@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    require_once('./inc/dbcon.php');    
+    require_once('./inc/config.php');    
     require_once('./inc/helpers.php');  
 
     $sql = "SELECT p.*,pdi.img from products p
