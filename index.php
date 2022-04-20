@@ -1,29 +1,59 @@
-<?php
-require_once('includes/header.php');
-?>
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>BOOKSY</title>
+<link rel="stylesheet" href="booksy layout/style.css">
+<link rel="stylesheet" href="booksy layout/stylebody.css">
+	
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet"  href="booksy layout/slidestyle.css">
+</head>
+<body>
+
+
+<div class="search">
+	<div class="logo"><img src="booksy layout/Booksy-logo.png"></div>
+	<!--<input type="search" id="site-search" name="q"><button>Search</button> -->
+	<form class="form-inline md-form mr-auto mb-4">
+  <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+  <button class="btn aqua-gradient btn-rounded btn-sm my-0" type="submit">Search</button>
+</form>
+</div>
+	
+<div id="wrap">
+<div id="nav">
+<ul>
+  <li><a href="#">HOME</a></li>
+  <li><a href="#">COLLECTION</a></li>
+  <li><a href="#">STORE</a></li>
+  <li><a href="#">BOOK DETAIL</a></li>
+</ul>
+</div>
+</div>
 	
 <main>
-	<div class="header"> <img src="assets/images/header.png"></div>
+	<div class="header"> <img src="./images/header.png"></div>
 <span><p>Best Sellers</p></span>
 
 <div class="books">
 <div class="row">
   <div class="column">
 	 <div class="container">
-    <img src="assets/images/MISTRESS OF ROME.png" alt="mistress" style="width:90%">
+    <img src="./images/MISTRESS OF ROME.png" alt="mistress" style="width:90%">
 		 <div class="text-block"><p>$16.50</p></div> </div>
 	</div>
 	  
   <div class="column">
 	  <div class="container">
-    <img src="assets/images/katequeen.png" alt="katequeen" style="width:90%">
+    <img src="./Images/katequeen.png" alt="katequeen" style="width:90%">
 	  	 <div class="text-block"><p>$13.50</p> </div>
 	  </div>
 	  </div>
 	  
   <div class="column">
 	  <div class="container">
-    <img src="assets/images/THE SERPENT AND THE PEARL.png" alt="Serpent and Pearl" style="width:90%">
+    <img src="./Images/THE SERPENT AND THE PEARL.png" alt="Serpent and Pearl" style="width:90%">
 	  	 <div class="text-block"><p>$14.50</p></div>
   </div>
 	  </div>
@@ -35,30 +65,30 @@ require_once('includes/header.php');
 <div id="content-wrapper">
 		<div class="column">
 			<div id="slide-wrapper" >
-				<img id="slideLeft" class="arrow" src="images/arrow-left.png">
+				<img id="slideLeft" class="arrow" src="booksy layout/images/arrow-left.png">
 				 <div id="slider">
-					<img class="thumbnail active" src="assets/images/LESSONS IN CHEMISTRY.png">
-					<img class="thumbnail" src="assets/images/WHO BY FIRE.png">
-					<img class="thumbnail" src="assets/images/BE A TRIANGLE.png">
-					<img class="thumbnail" src="assets/images/RUN TOWARDS THE DANGER.png">
-					<img class="thumbnail" src="assets/images/TEN STEPS TO NANETTE.png">
-					<img class="thumbnail" src="assets/images/palace.jpeg">
-					<img class="thumbnail" src="assets/images/22 murders.jpeg">
-					<img class="thumbnail" src="assets/images/it ends.jpeg">
-					<img class="thumbnail" src="assets/images/DREAM.WEBP">
-					<img class="thumbnail" src="assets/images/FREEZING.JPEG">
-					<img class="thumbnail" src="assets/images/HELLO.JPEG">
-					<img class="thumbnail" src="assets/images/IMAGINE.WEBP">
+					<div><img class="thumbnail active" src="./images/LESSONS IN CHEMISTRY.png"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
+					<div><img class="thumbnail" src="./images/WHO BY FIRE.png"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
+					<div><img class="thumbnail" src="./images/BE A TRIANGLE.png"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
+					<div><img class="thumbnail" src="./images/RUN TOWARDS THE DANGER.png"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
+					<div><img class="thumbnail" src="./images/TEN STEPS TO NANETTE.png"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
+					<div><img class="thumbnail" src="./images/palace.jpeg"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
+					<div><img class="thumbnail" src="./images/22 murders.jpeg"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
+					<div><img class="thumbnail" src="./images/it ends.jpeg"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
+					<div><img class="thumbnail" src="./images/DREAM.WEBP"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
+					<div><img class="thumbnail" src="./images/FREEZING.JPEG"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
+					<div><img class="thumbnail" src="./images/HELLO.JPEG"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
+					<div><img class="thumbnail" src="./images/IMAGINE.WEBP"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
 					
 				</div>
 
-				<img id="slideRight" class="arrow" src="assets/images/arrow-right.png">
+				<img id="slideRight" class="arrow" src="booksy layout/images/arrow-right.png">
 			</div>
 		</div>
 
 	</div>
 
-		<script type="text/javascript" src="assets/js/script.js"></script>
+		<script type="text/javascript" src="script.js"></script>
 	
 
 	
@@ -67,7 +97,7 @@ require_once('includes/header.php');
 
       <div class="footer-left">
 
-		<img src="Booksy-logos_white.png">
+		<img src="booksy layout/Booksy-logos_white.png">
         <p class="footer-links">
           <a href="#" class="link-1">Home</a>
           
@@ -116,6 +146,5 @@ require_once('includes/header.php');
 
     </footer>
 
-<?php
-require_once('includes/footer.php');
-?>
+</body>
+</html>
