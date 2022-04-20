@@ -1,87 +1,100 @@
-<?php
+<?php 
+    session_start();
+    require_once('./inc/config.php');    
+    require_once('./inc/helpers.php');  
+
+    if(isset($_GET['action'],$_GET['item']) && $_GET['action'] == 'remove')
+    {
+        unset($_SESSION['cart_items'][$_GET['item']]);
+        header('location:cart.php');
+        exit();
+    }
 	
-	session_start();
-	require_once "functions/database_functions.php";
-	require_once "functions/cart_functions.php";
-
-	// book_isbn got from form post method, change this place later.
-	if(isset($_POST['ISBN'])){
-		$book_isbn = $_POST['ISBN'];
-	}
-
-	if(isset($book_isbn)){
-		// new item selected
-		if(!isset($_SESSION['cart'])){
-			// $_SESSION['cart'] is associative array that bookisbn => qty
-			$_SESSION['cart'] = array();
-
-			$_SESSION['total_items'] = 0;
-			$_SESSION['total_price'] = '0.00';
-		}
-
-		if(!isset($_SESSION['cart'][$book_isbn])){
-			$_SESSION['cart'][$book_isbn] = 1;
-		} elseif(isset($_POST['cart'])){
-			$_SESSION['cart'][$book_isbn]++;
-			unset($_POST);
-		}
-	}
-
-	// if save change button is clicked , change the qty of each bookisbn
-	if(isset($_POST['save_change'])){
-		foreach($_SESSION['cart'] as $isbn =>$qty){
-			if($_POST[$isbn] == '0'){
-				unset($_SESSION['cart']["$isbn"]);
-			} else {
-				$_SESSION['cart']["$isbn"] = $_POST["$isbn"];
-			}
-		}
-	}
-
+	$pageTitle = 'Demo PHP Shopping cart - Add to cart using Session';
+	$metaDesc = 'Demo PHP Shopping cart - Add to cart using Session';
 	
-	$title = "Your shopping cart";
-	
+    include('layouts/header.php');
 
-	if(isset($_SESSION['cart']) && (array_count_values($_SESSION['cart']))){
-		$_SESSION['total_price'] = total_price($_SESSION['cart']);
-		$_SESSION['total_items'] = total_items($_SESSION['cart']);
+    //pre($_SESSION);
 ?>
-   	<form action="cart.php" method="post">
-	   	<table class="table">
-	   		<tr>
-	   			<th>Item</th>
-	   			<th>Price</th>
-	  			<th>Quantity</th>
-	   			<th>Total</th>
-	   		</tr>
-	   		<?php
-		    	foreach($_SESSION['cart'] as $isbn => $qty){
-					$conn = db_connect();
-					$book = mysqli_fetch_assoc(getBookByIsbn($conn, $isbn));
-			?>
-			<tr>
-				<td><?php echo $book['Title'] . " by " . $book['Author']; ?></td>
-				<td><?php echo "$" . $book['Price']; ?></td>
-				<td><input type="text" value="<?php echo $qty; ?>" size="2" name="<?php echo $isbn; ?>"></td>
-				<td><?php echo "$" . $qty * $book['Price']; ?></td>
-			</tr>
-			<?php } ?>
-		    <tr>
-		    	<th>&nbsp;</th>
-		    	<th>&nbsp;</th>
-		    	<th><?php echo $_SESSION['total_items']; ?></th>
-		    	<th><?php echo "$" . $_SESSION['total_price']; ?></th>
-		    </tr>
-	   	</table>
-	   	<input type="submit" class="btn btn-primary" name="save_change" value="Save Changes">
-	</form>
-	<br/><br/>
-	<a href="../online-book-store-project-in-php-master/checkout.php" class="btn btn-primary">Go To Checkout</a> 
-	<a href="../online-book-store-project-in-php-master/books.php" class="btn btn-primary">Continue Shopping</a>
-<?php
-	} else {
-		echo "<p class=\"text-warning\">Your cart is empty! Please make sure you add some books in it!</p>";
-	}
-	if(isset($conn)){ mysqli_close($conn); }
-	require_once "../online-book-store-project-in-php-master/template/footer.php";
-?>
+<div class="row">
+    <div class="col-md-12">
+        <?php if(empty($_SESSION['cart_items'])){?>
+        <table class="table">
+            <tr>
+                <td>
+                    <p>Your cart is emty</p>
+                </td>
+            </tr>
+        </table>
+        <?php }?>
+        <?php if(isset($_SESSION['cart_items']) && count($_SESSION['cart_items']) > 0){?>
+        <table class="table">
+           <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                    $totalCounter = 0;
+                    $itemCounter = 0;
+                    foreach($_SESSION['cart_items'] as $key => $item){
+
+                     $imgUrl = PRODUCT_IMG_URL.str_replace(' ','-',strtolower($item['product_name']))."/".$item['product_img'];   
+                    
+                    $total = $item['product_price'] * $item['qty'];
+                    $totalCounter+= $total;
+                    $itemCounter+=$item['qty'];
+                    ?>
+                    <tr>
+                        <td>
+                            <img src="<?php echo $imgUrl; ?>" class="rounded img-thumbnail mr-2" style="width:60px;"><?php echo $item['product_name'];?>
+                            
+                            <a href="cart.php?action=remove&item=<?php echo $key?>" class="text-danger">
+                                <i class="bi bi-trash-fill"></i>
+                            </a>
+
+                        </td>
+                        <td>
+                            $<?php echo $item['product_price'];?>
+                        </td>
+                        <td>
+                            <input type="number" name="" class="cart-qty-single" data-item-id="<?php echo $key?>" value="<?php echo $item['qty'];?>" min="1" max="1000" >
+                        </td>
+                        <td>
+                            <?php echo $total;?>
+                        </td>
+                    </tr>
+                <?php }?>
+                <tr class="border-top border-bottom">
+                    <td><button class="btn btn-danger btn-sm" id="emptyCart">Clear Cart</button></td>
+                    <td></td>
+                    <td>
+                        <strong>
+                            <?php 
+                                echo ($itemCounter==1)?$itemCounter.' item':$itemCounter.' items'; ?>
+                        </strong>
+                    </td>
+                    <td><strong>$<?php echo $totalCounter;?></strong></td>
+                </tr> 
+                </tr>
+            </tbody> 
+        </table>
+        <div class="row">
+            <div class="col-md-11">
+				<a href="checkout.php">
+					<button class="btn btn-primary btn-lg float-right">Checkout</button>
+				</a>
+            </div>
+        </div>
+        <br>
+        <br>
+        
+        <?php }?>
+    </div>
+</div>
+<?php include('layouts/footer.php');?>

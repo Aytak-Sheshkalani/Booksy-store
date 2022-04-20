@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.search {
+    height: 105px;
+    width: 100%;
+    background-color: #AFB4F4;
+}
+
+.search .logo {
+    float: left;
+}
+
+#wrap {
+    overflow: hidden;
+    position: relative;
+    /* IE7 needs this */
+    background-color: #3E23C0;
+}
+
+#nav {
+    float: left;
+    position: relative;
+    left: 50%;
+}
+
+#nav ul {
+    float: left;
+    /* IE6 needs this */
+    position: relative;
+    left: -50%;
+    list-style: none;
+}
+
+#nav li {
+    float: left;
+}
+
+#nav a {
+    float: left;
+    text-decoration: none;
+    padding: 0 30px;
+    /* variable width */
+    color: #F3EFEF;
+}
+
+label {
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+    margin: 2rem 0;
+    margin-left: 1100px;
+}
+
+*/ .item1 {
+    grid-area: left;
+}
+
+.item2 {
+    grid-area: right;
+}
+
+.item3 {
+    grid-area: bottom;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas: 'left left right right right right' 'bottom bottom bottom bottom bottom bottom';
+}
+
+.grid-container>div {
+    text-align: left;
+    padding: 20px 0;
+    font-size: 30px;
+    padding: 50px;
+}
+
+.checked {
+    color: orange;
+}
