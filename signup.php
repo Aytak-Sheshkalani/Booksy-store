@@ -1,5 +1,5 @@
 <?php
-	
+require_once('includes/header.php');	
 $showAlert = false;
 $showError = false;
 $exists=false;
@@ -10,19 +10,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	// Database Connection.
 	include 'dbcon.php';
 	
-	$username = $_POST["username"];
-	$password = $_POST["password"];
-	$cpassword = $_POST["cpassword"];
-			
+	$email = prepare_string($dbc,$_POST["email"]);
+	$password = prepare_string($dbc,$_POST["password"]);
+	$cpassword = prepare_string($dbc,$_POST["cpassword"]);
+	$firstname = prepare_string($dbc,$_POST["fname"]);
+	$lastname = prepare_string($dbc,$_POST["lname"]);	
+	$address = isset($_POST["address"])? prepare_string($dbc,$_POST["address"]):null;
+
 	
-	$sql = "Select * from users where username='$username'";
+	
+	$sql = "Select * from User where email='$email'";
 	
 	$result = mysqli_query($dbc, $sql);
 	
 	$num = mysqli_num_rows($result);
 	
 	// This sql query is use to check if
-	// the username is already present
+	// the email is already present
 	// or not in our Database
 	if($num == 0) {
 		if(($password == $cpassword) && $exists==false) {
@@ -30,10 +34,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			$hash = password_hash($password,
 								PASSWORD_DEFAULT);
 				
+			
 			// Password Hashing is used here.
-			$sql = "INSERT INTO `users` ( `username`,
-				`password`, `date`) VALUES ('$username',
-				'$hash', current_timestamp())";
+			$sql="INSERT INTO User(`email`,`password`,`FirstName`,`LastName`,`address`, `Type`) VALUES('$email','$hash','$firstname','$lastname','$address',0)";
 	
 			$result = mysqli_query($dbc, $sql);
 	
@@ -48,7 +51,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	
 if($num>0)
 {
-	$exists="Username not available";
+	$showError="Email not available";
 }
 	
 }//end if
@@ -126,27 +129,41 @@ if($num>0)
 	<form action="signup.php" method="post">
 	
 		<div class="form-group">
-			<label for="username">Username</label>
-		<input type="text" class="form-control" id="username"
-			name="username" aria-describedby="emailHelp">	
+			<label for="email">email</label>
+		<input type="email" class="form-control" id="email"
+			name="email" aria-describedby="emailHelp" required>	
 		</div>
 	
 		<div class="form-group">
 			<label for="password">Password</label>
 			<input type="password" class="form-control"
-			id="password" name="password">
+			id="password" name="password" required>
 		</div>
 	
 		<div class="form-group">
 			<label for="cpassword">Confirm Password</label>
 			<input type="password" class="form-control"
-				id="cpassword" name="cpassword">
+				id="cpassword" name="cpassword" required>
 	
 			<small id="emailHelp" class="form-text text-muted">
 			Make sure to type the same password
 			</small>
 		</div>	
-	
+		<div class="form-group">
+			<label for="fname">First name</label>
+		<input type="text" class="form-control" id="fname"
+			name="fname" aria-describedby="emailHelp" required>	
+		</div>
+		<div class="form-group">
+			<label for="lname">Last name</label>
+		<input type="text" class="form-control" id="lname"
+			name="lname" aria-describedby="emailHelp" required>	
+		</div>
+		<div class="form-group">
+			<label for="address">Address</label>
+		<input type="text" class="form-control" id="address"
+			name="address" aria-describedby="emailHelp" required>	
+		</div>
 		<button type="submit" class="btn btn-primary">
 		SignUp
 		</button>
@@ -176,5 +193,6 @@ https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 "sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 	crossorigin="anonymous">
 </script>
-</body>
-</html>
+<?php
+require('includes/footer.php');
+?>

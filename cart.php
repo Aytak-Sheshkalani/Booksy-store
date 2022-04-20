@@ -1,7 +1,7 @@
 <?php 
     session_start();
-    require_once('./inc/config.php');    
-    require_once('./inc/helpers.php');  
+    // require_once('./inc/config.php');    
+    // require_once('./inc/helpers.php');  
 
     if(isset($_GET['action'],$_GET['item']) && $_GET['action'] == 'remove')
     {
@@ -23,7 +23,7 @@
         <table class="table">
             <tr>
                 <td>
-                    <p>Your cart is emty</p>
+                    <p>Your cart is empty</p>
                 </td>
             </tr>
         </table>
