@@ -1,37 +1,10 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>BOOKSY</title>
-<link rel="stylesheet" href="booksy layout/style.css">
-<link rel="stylesheet" href="booksy layout/stylebody.css">
-	
+<?php
+$cssFiles = '
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<link rel="stylesheet"  href="booksy layout/slidestyle.css">
-</head>
-<body>
+<link rel="stylesheet"  href="assets/css/slidestyle.css" />';
+require_once('includes/header.php');
+?>
 
-
-<div class="search">
-	<div class="logo"><img src="booksy layout/Booksy-logo.png"></div>
-	<!--<input type="search" id="site-search" name="q"><button>Search</button> -->
-	<form class="form-inline md-form mr-auto mb-4">
-  <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-  <button class="btn aqua-gradient btn-rounded btn-sm my-0" type="submit">Search</button>
-</form>
-</div>
-	
-<div id="wrap">
-<div id="nav">
-<ul>
-  <li><a href="#">HOME</a></li>
-  <li><a href="#">COLLECTION</a></li>
-  <li><a href="#">STORE</a></li>
-  <li><a href="#">BOOK DETAIL</a></li>
-</ul>
-</div>
-</div>
-	
 <main>
 	<div class="header"> <img src="./images/header.png"></div>
 <span><p>Best Sellers</p></span>
@@ -65,7 +38,7 @@
 <div id="content-wrapper">
 		<div class="column">
 			<div id="slide-wrapper" >
-				<img id="slideLeft" class="arrow" src="booksy layout/images/arrow-left.png">
+				<img id="slideLeft" class="arrow" src="assets/images/arrow-left.png">
 				 <div id="slider">
 					<div><img class="thumbnail active" src="./images/LESSONS IN CHEMISTRY.png"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
 					<div><img class="thumbnail" src="./images/WHO BY FIRE.png"><button id="button-service" onclick="window.location.href='registration-form/index.html'">Add to Cart</button></div>
@@ -82,7 +55,7 @@
 					
 				</div>
 
-				<img id="slideRight" class="arrow" src="booksy layout/images/arrow-right.png">
+				<img id="slideRight" class="arrow" src="assets/images/arrow-right.png">
 			</div>
 		</div>
 
@@ -93,58 +66,8 @@
 
 	
 </main>
-<footer class="footer-distributed">
 
-      <div class="footer-left">
 
-		<img src="booksy layout/Booksy-logos_white.png">
-        <p class="footer-links">
-          <a href="#" class="link-1">Home</a>
-          
-          <a href="#">COLLECTION</a>
-        
-          <a href="#">STORE</a>
-        
-          <a href="#">BOOK DETAIL</a>
-             
-        </p>
-      </div>
-
-      <div class="footer-center">
-
-        <div>
-          <i class="fa fa-map-marker"></i>
-          <p><span>108 University Ave. East. </span> WATERLOO, ON N2J 2W2 </p>
-        </div>
-
-        <div>
-          <i class="fa fa-phone"></i>
-          <p>+1.555.555.5555</p>
-        </div>
-
-        <div>
-          <i class="fa fa-envelope"></i>
-          <p><a href="booksy@company.com">booksy@company.com</a></p>
-        </div>
-
-      </div>
-
-      <div class="footer-right">
-
-        <p class="footer-company-contact">
-          <span>Contact Info</span>
-			Asheshkalanigha1242@conestogac.on.ca
-			<br>Mroknsharifi9708@conestogac.on.ca
-			<br>Horen3591@conestogac.on.ca
-			
-          
-        </p>
-
-     
-
-      </div>
-
-    </footer>
-
-</body>
-</html>
+<?php
+require_once('includes/footer.php');
+?>
