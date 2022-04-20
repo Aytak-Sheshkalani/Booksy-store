@@ -1,4 +1,6 @@
 <?php
+// Aytak Sheshkalani Ghalibaf 8741242
+
 require_once('includes/checkAdmin.php');    
 function getBookAuthors($authorList, $authorIDs){
     $authors = [];

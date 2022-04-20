@@ -1,4 +1,5 @@
 <?php
+// Aytak Sheshkalani Ghalibaf 8741242
 session_start();
 $cssFiles = '
 <link rel="stylesheet" href="assets/css/booklist.css" />
@@ -32,8 +33,12 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 ?>
 <!-- login form in html -->
 <div style="display:flex; justify-content:center;">
-    <?php echo $error; ?>
     <form class="mui-form" method="post" action="login.php">
+        <?php  if(strlen($error) > 0){?>
+        <div class="mui-panel">
+            <p><?php echo $error; ?></p>
+        </div>
+        <?php } ?>
         <legend>Login</legend>
         <div class="mui-textfield mui-textfield--float-label">
             <input type="text" name="username" maxlength="300">
