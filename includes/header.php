@@ -38,8 +38,8 @@
         <div id="nav">
             <ul>
                 <li><a href=".">HOME</a></li>
-                <li><a href="#">COLLECTION</a></li>
-                <li><a href="#">STORE</a></li>
+               
+                <li><a href="store.php">STORE</a></li>
                 <li><a href="bookList.php">BOOK LIST</a></li>
                 <li><a href="login.php">LOGIN</a></li>
                 <li><a href="signup.php">SIGN UP</a></li>
